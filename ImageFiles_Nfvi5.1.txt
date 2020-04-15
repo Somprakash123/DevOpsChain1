@@ -1,0 +1,32 @@
+S00096656
+
+# Create an image for the weather-app
+FROM node
+LABEL org.label-schema.version=v1.1
+ARG SRC_DIR=/var/node
+
+RUN mkdir -p $SRC_DIR
+ADD src/ $SRC_DIR
+WORKDIR $SRC_DIR
+RUN npm install
+EXPOSE 3000
+CMD ./bin/www
+
+# Creates a CentOS image that uses cloud_user as a non-privileged user
+FROM centos:latest
+RUN useradd -ms /bin/bash cloud_user
+USER cloud_user
+
+# Create an image for the weather-app
+FROM node
+LABEL org.label-schema.version=v1.1
+RUN useradd -ms /bin/bash node_user
+USER node_user
+ADD src/ /home/node_user
+WORKDIR /home/node_user
+RUN npm install
+EXPOSE 3000
+CMD ./bin/www
+
+003901230955
+ICIC0000039
