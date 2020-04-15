@@ -1,4 +1,3 @@
-S00096656
 
 # Create an image for the weather-app
 FROM node
@@ -28,5 +27,3 @@ RUN npm install
 EXPOSE 3000
 CMD ./bin/www
 
-003901230955
-ICIC0000039
